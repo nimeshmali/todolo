@@ -10,7 +10,7 @@ function App() {
   const [date,setDate] = useState("");
   const [text, setText]= useState("");
   const [data,setData]= useState([]);
-  // const [compTask,setCompTask]=useState([]);
+  const [compTask,setCompTask]=useState([]);
   const handleChange = async() =>{
     const response = await axios.get("http://localhost:5000/");
     setDate(response.data);
@@ -26,9 +26,17 @@ function App() {
       setText("");
     }
   }
-  // const changeTask=(ind,data)=>{
-  //   setCompTask([...compTask,{id:ind,value:data}]);
-  // }
+  const changeTask=(text,idx,isCheck)=>{
+    if(isCheck===true){
+      setCompTask([...compTask,{id:idx,value:text}]);
+      setData((data)=>data.filter((data)=>data.id!==idx));
+    }
+    else{
+      setData([...data,{id:idx,value:text}]);
+      setCompTask((compTask)=>compTask.filter((compTask)=>compTask.id!==idx));
+    }
+    
+  }
   return (
     <div>
       
@@ -37,13 +45,21 @@ function App() {
       <div>
         {
           data.map((data)=>(
-            <Items key = {data.id} ind={data.id} data = {data.value}/>
-          ))
+            <Items key = {data.id} ind={data.id} data = {data} changeTask = {changeTask}/>
+          )) 
         }
       </div>
       <h3 className="font-bold">completed tasks</h3>
+      <div>
+        {
+          
+          compTask.map((compTask)=>(
+            <Items key = {compTask.id} ind={compTask.id} data = {compTask} changeTask = {changeTask} ifChecked = {true}/>
+          ))
+        }
+      </div>
       <Input text = {text} addItem = {addItem}  setText={setText} />
-      
+
     </div>
     
   )
