@@ -53,7 +53,7 @@ function App() {
         }
       </div>
       <div className="flex justify-between mx-3 my-3">
-        <p className="font-bold bg-black text-white px-2 py-1 rounded">completed tasks</p>
+        <p className="font-bold bg-black text-white px-2 py-1 rounded">Completed Tasks</p>
         <p>{compTask.length} Completed</p>
       </div>
       <div>
