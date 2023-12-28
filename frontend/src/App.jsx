@@ -3,7 +3,7 @@ import axios from "axios";
 import Items from "./components/Items";
 import Date from "./components/Date";
 import Input from "./components/Input";
-
+import './App.css'
 
 function App() {
   const [cnt,setCnt] = useState(0);
@@ -34,14 +34,17 @@ function App() {
     else{
       setData([...data,{id:idx,value:text}]);
       setCompTask((compTask)=>compTask.filter((compTask)=>compTask.id!==idx));
-    }
+    } 
     
   }
   return (
-    <div>
+    <div className="my-8 w-4/6 main-font" >
       
       <Date val = {date}/>
-      <h3 className="font-bold ">tasks</h3>
+      <div className="flex justify-between mx-3 my-3">
+        <h3 className="font-bold bg-black text-white px-2 py-1 rounded">To Do</h3>
+        <p>{data.length} Tasks</p>
+      </div>
       <div>
         {
           data.map((data)=>(
@@ -49,7 +52,10 @@ function App() {
           )) 
         }
       </div>
-      <h3 className="font-bold">completed tasks</h3>
+      <div className="flex justify-between mx-3 my-3">
+        <p className="font-bold bg-black text-white px-2 py-1 rounded">completed tasks</p>
+        <p>{compTask.length} Completed</p>
+      </div>
       <div>
         {
           
