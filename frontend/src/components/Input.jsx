@@ -9,7 +9,7 @@ const Input = (props)=>{
         <input type="text" className="w-full pl-2 text-white hover:opacity-75 inp rounded mr-3" placeholder="Add task" value={props.text} onChange={(e)=>{
           props.setText(e.target.value);
         }}/>
-        <button onClick={props.addItem} className="relative right-50 text-white hover:opacity-75 font-bold py-2 px-4 rounded-full">+</button>
+        <button onClick={props.addItem} className="right-50 text-white hover:opacity-75 font-bold rounded-full">+</button>
       </div>
     )
 }
